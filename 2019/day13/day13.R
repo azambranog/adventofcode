@@ -36,14 +36,26 @@ run_game <- function() {
 }
 
 
+draw_board <- function(board) {
+  lis <- rep('', max(board$y) + 1)
+  for(i in min(board$y):max(board$y)){
+    li <- rep(' ', max(board$x) + 1)
+    for(j in min(board$x):max(board$x)){
+      type <- board[y == i & x == j, type]
+      if (type == 1) {li[j+1] <- '#'}
+      if (type == 2) {li[j+1] <- 'x'}
+      if (type == 3) {li[j+1] <- '_'}
+      if (type == 4) {li[j+1] <- 'o'}
+    }
+    lis[i+1] <- paste0(li, collapse = '')
+  }
+  cat(paste0(lis, collapse = '\n'))  
+}
+draw_board(results$board)
+
+
+
 # task1
 results <- run_game()
 message(sprintf('There are %s tiles on the board', results$board[type == 2, .N]))
-
-
-library(ggplot2)
-
-ggplot(results$board) +
-  geom_tile(aes(x = x, y = -y, fill =factor(type))) +
-  coord_fixed()
-
+draw_board(results$board)
