@@ -8,6 +8,7 @@ computer_with_input <- function(x, pointer_position, relative_base_position,
   current_result <- NA
   finished <- TRUE
   waiting_input <- FALSE
+  produced_output <- FALSE
   while (opcode != 99){
     if(!opcode %in% 1:9) {
       message('ERROR BAD OPCODE')
@@ -72,6 +73,7 @@ computer_with_input <- function(x, pointer_position, relative_base_position,
       message(sprintf('Output: %s', current_result))
       pointer <- pointer + 2
       if(stopmode){
+        produced_output <- TRUE
         break
       }
     } 
@@ -124,7 +126,8 @@ computer_with_input <- function(x, pointer_position, relative_base_position,
   
   return(list(finished=finished, current_output=current_result, 
               current_pointer=pointer, output_program=y,
-              current_relative_base=relative_base, waiting_input=waiting_input))
+              current_relative_base=relative_base, waiting_input=waiting_input,
+              produced_output=produced_output))
 }
 
 
