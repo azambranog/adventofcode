@@ -215,8 +215,8 @@ fill_oxygen <- function(my_map, report_every=100, plotmode =F){
     }
   }
   
-  message(sprintf('FILLED AFTER %s STEPS', steps))
-  return(steps)
+  message(sprintf('FILLED AFTER %s STEPS', step))
+  return(step)
 }
 
 # task 2
